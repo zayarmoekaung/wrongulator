@@ -1,15 +1,16 @@
 import { useCallback, useEffect, useState } from '@lynx-js/react'
 
 import './App.css'
-import arrow from './assets/arrow.png'
-import lynxLogo from './assets/lynx-logo.png'
-import reactLynxLogo from './assets/react-logo.png'
-
+import { useCalculate } from './stores/useCalculate'
+import { useResult } from './stores/useResult'
+import Btn from './components/btn/btn'
+import parseSyntaxTree from './utils/syntaxParser'
 export function App(props: {
   onRender?: () => void
 }) {
   const [alterLogo, setAlterLogo] = useState(false)
-
+  const { syntaxTree } = useCalculate()
+  const { result } = useResult()
   useEffect(() => {
     console.info('Hello, ReactLynx')
   }, [])
@@ -22,33 +23,46 @@ export function App(props: {
 
   return (
     <view>
-      <view className='Background' />
       <view className='App'>
         <view className='Banner'>
-          <view className='Logo' bindtap={onTap}>
-            {alterLogo
-              ? <image src={reactLynxLogo} className='Logo--react' />
-              : <image src={lynxLogo} className='Logo--lynx' />}
-          </view>
-          <text className='Title'>React</text>
-          <text className='Subtitle'>on Lynx</text>
+          <text className='Title'>Wrongulator</text>
+        </view>
+        <view className='SyntaxContainer'>
+          <text className='Syntax'>{parseSyntaxTree(syntaxTree)}</text>
+        </view>
+        <view className='Result'>
+          <text className='ResultText'>{result !== null ? `= ${result}` : '0'}</text>
         </view>
         <view className='Content'>
-          <image src={arrow} className='Arrow' />
-          <text className='Description'>Tap the logo and have fun!</text>
-          <text className='Hint'>
-            Edit<text
-              style={{
-                fontStyle: 'italic',
-                color: 'rgba(255, 255, 255, 0.85)',
-              }}
-            >
-              {' src/App.tsx '}
-            </text>
-            to see updates!
-          </text>
+          <view className='ButtonGrid'>
+            <Btn value="AC" type="operator" />
+            <Btn value="7" type="number" />
+            <Btn value="4" type="number" />
+            <Btn value="1" type="number" />
+            <Btn value="0" type="number" />
+          </view>
+          <view className='ButtonGrid'>
+            <Btn value="()" type="parenthesis" />
+            <Btn value="8" type="number" />
+            <Btn value="5" type="number" />
+            <Btn value="2" type="number" />
+            <Btn value="." type="number" />
+          </view>
+          <view className='ButtonGrid'>
+            <Btn value="%" type="operator" />
+            <Btn value="9" type="number" />
+            <Btn value="6" type="number" />
+            <Btn value="3" type="number" />
+            <Btn value="Del" type="operator" />
+          </view>
+          <view className='ButtonGrid'>
+            <Btn value="/" type="operator" />
+            <Btn value="*" type="operator" />
+            <Btn value="-" type="operator" />
+            <Btn value="+" type="operator" />
+            <Btn value="=" type="operator" />
+          </view>
         </view>
-        <view style={{ flex: 1 }} />
       </view>
     </view>
   )

@@ -1,0 +1,30 @@
+.btn{
+    width: 22vw;
+    height: 22vw;
+    margin: 5px;
+    border-radius: 50%;
+    border: none;
+    color: black;
+    text-align: center;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+}
+.number{
+    background-color: #f0f0f0;
+    box-shadow: 0 4px #d9d9d9;
+}
+.operator{
+    background-color: #ffcc00;
+    box-shadow: 0 4px #e6b800;
+}
+.parenthesis{
+    background-color: #cccccc;
+    box-shadow: 0 4px #b3b3b3;
+}
+.btn text{
+    line-height: 60px;
+    font-size: 1.5rem;
+    color: black;
+    text-align: center;  
+}
