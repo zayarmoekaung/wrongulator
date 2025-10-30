@@ -54,7 +54,7 @@ export default function calculateSyntaxTree(syntaxTree: SyntaxNode[]): number {
     }
 
     if (opFunc) {
-        //throw new Error('Expression ends with an operator');
+        throw new Error('Expression ends with an operator');
     }
 
     return result;

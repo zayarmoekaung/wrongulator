@@ -6,6 +6,7 @@ interface CalculateState {
     setSyntaxTree: (tree: SyntaxNode[]) => void;
     addValueToSyntaxTree: (node: SyntaxNode) => void;
     clearSyntaxTree: () => void;
+    deleteLastFromSyntaxTree: () => void;
 }
 export const useCalculate = create<CalculateState>((set) => ({
     syntaxTree: null,
@@ -36,4 +37,9 @@ export const useCalculate = create<CalculateState>((set) => ({
             return { syntaxTree: newTree };
         }),
     clearSyntaxTree: () => set({ syntaxTree: null }),
+    deleteLastFromSyntaxTree: () =>
+        set((state) => ({
+            syntaxTree: state.syntaxTree ? state.syntaxTree.slice(0, -1) : null,   
+        }
+        )),
 }));

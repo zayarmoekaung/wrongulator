@@ -1,21 +1,60 @@
-## Rspeedy project
+# Wrongulator — ReactLynx Calculator
 
-This is a ReactLynx project bootstrapped with `create-rspeedy`.
+A small ReactLynx calculator demo bootstrapped with create-rspeedy.
 
-## Getting Started
+Prerequisites
+- Node.js >= 18
+- pnpm (recommended)
 
-First, install the dependencies:
-
+Install
 ```bash
 pnpm install
 ```
 
-Then, run the development server:
-
+Development
 ```bash
 pnpm run dev
 ```
+Open the QR code shown in the terminal with LynxExplorer.
 
-Scan the QRCode in the terminal with your LynxExplorer App to see the result.
+Build / Preview
+```bash
+pnpm run build
+pnpm run preview
+```
 
-You can start editing the page by modifying `src/App.tsx`. The page auto-updates as you edit the file.
+Tests
+```bash
+pnpm run test
+```
+
+Formatting
+```bash
+pnpm run format
+```
+
+Quick overview
+- The app root component is [`App`](src/App.tsx).
+- UI button component: [`Btn`](src/components/btn/btn.tsx).
+- State stores:
+  - Syntax and editing: [`useCalculate`](src/stores/useCalculate.ts)
+  - History: [`useHistory`](src/stores/useHistory.ts)
+  - Result display: [`useResult`](src/stores/useResult.ts)
+- Core logic:
+  - Expression evaluation: [`calculateSyntaxTree`](src/utils/calculate.ts)
+  - Syntax rendering: [`parseSyntaxTree`](src/utils/syntaxParser.ts)
+
+Project layout
+- [src](src) — source files
+- [package.json](package.json) — scripts and dependencies
+- [lynx.config.ts](lynx.config.ts) — rspeedy config
+- [vitest.config.ts](vitest.config.ts) — test runner config
+- [LICENSE](LICENSE)
+
+Contributing
+- Edit [src/App.tsx](src/App.tsx) to change the UI.
+- Run the test suite with `pnpm run test`.
+- Keep code formatted with `pnpm run format`.
+
+License
+- Distributed under the terms in [LICENSE](LICENSE).
