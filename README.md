@@ -100,8 +100,8 @@ pnpm run preview
 
 ### Contributing
 
-* Edit src/App.tsx to change the UI.
+* Contributions, issues, and feature requests are welcome! Please open an issue or submit a pull request.
 
 ## License
 
-* Distributed under the terms in LICENSE.
+* This project is licensed under the GPL License. See [LICENSE](LICENSE) for details.
