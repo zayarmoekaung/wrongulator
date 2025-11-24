@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useCalculate } from "../../stores/useCalculate";
+import { useSyntax } from "../../stores/useSyntax";
 import { useResult } from "../../stores/useResult";
 import { pushToTree } from "../../utils/syntaxTree";
 import { NodeType } from "../../types/nodeType";
@@ -22,9 +22,9 @@ export default function ParenthesisBtn({ value }: { value: string }) {
             type: NodeType.PARENTHESIS,
             value: val,
         };
-        const tree = useCalculate.getState().syntaxTree || [];
+        const tree = useSyntax.getState().syntaxTree || [];
         const newTree = pushToTree(tree, newNode);
-        useCalculate.getState().setSyntaxTree(newTree);
+        useSyntax.getState().setSyntaxTree(newTree);
     }
     return (
         <view bindtap={handleTap} class={'parenthesis btn'}>

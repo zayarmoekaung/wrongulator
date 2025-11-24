@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from '@lynx-js/react'
 
 import './App.css'
-import { useCalculate } from './stores/useCalculate'
+import { useSyntax } from './stores/useSyntax'
 import { useResult } from './stores/useResult'
 import Button from './components/btn/button'
 import Title from './components/title/title'
@@ -11,7 +11,7 @@ export function App(props: {
   onRender?: () => void
 }) {
   const [alterLogo, setAlterLogo] = useState(false)
-  const { syntaxTree } = useCalculate()
+  const { syntaxTree } = useSyntax()
   const { result } = useResult()
   useEffect(() => {
     console.info('Hello, ReactLynx')

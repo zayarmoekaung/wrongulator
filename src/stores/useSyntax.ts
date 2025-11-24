@@ -1,12 +1,12 @@
 import { create } from "zustand";
 import type { SyntaxNode } from "../types/syntaxNode";
-interface CalculateState {
+interface SyntaxState {
     syntaxTree: SyntaxNode[] | null;
     setSyntaxTree: (tree: SyntaxNode[]) => void;
     clearSyntaxTree: () => void;
     deleteLastFromSyntaxTree: () => void;
 }
-export const useCalculate = create<CalculateState>((set) => ({
+export const useSyntax = create<SyntaxState>((set) => ({
     syntaxTree: null,
     setSyntaxTree: (tree: SyntaxNode[]) => set({ syntaxTree: tree }),
     clearSyntaxTree: () => set({ syntaxTree: null }),

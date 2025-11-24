@@ -1,4 +1,4 @@
-import { useCalculate } from "../../stores/useCalculate";
+import { useSyntax } from "../../stores/useSyntax";
 import { NodeType } from "../../types/nodeType";
 import { pushToTree } from "../../utils/syntaxTree";
 import { useResult } from "../../stores/useResult";
@@ -12,9 +12,9 @@ export default function NumberBtn({ value }: { value: string }) {
             type: NodeType.NUMBER,
             value,
         };
-        const tree = useCalculate.getState().syntaxTree || [];
+        const tree = useSyntax.getState().syntaxTree || [];
         const newTree = pushToTree(tree, newNode);
-        useCalculate.getState().setSyntaxTree(newTree);
+        useSyntax.getState().setSyntaxTree(newTree);
         setResult(calculateSyntaxTree(newTree).toString());
     }
 

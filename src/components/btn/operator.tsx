@@ -1,4 +1,4 @@
-import { useCalculate } from "../../stores/useCalculate";
+import { useSyntax } from "../../stores/useSyntax";
 import { pushToTree } from "../../utils/syntaxTree";
 import { useResult } from "../../stores/useResult";
 import { NodeType } from "../../types/nodeType";
@@ -10,9 +10,9 @@ export default function OperatorBtn({ value }: { value: string }) {
             type: NodeType.OPERATOR,
             value,
         };
-        const tree = useCalculate.getState().syntaxTree || [];
+        const tree = useSyntax.getState().syntaxTree || [];
         const newTree = pushToTree(tree, newNode);
-        useCalculate.getState().setSyntaxTree(newTree);
+        useSyntax.getState().setSyntaxTree(newTree);
     }
 
     return (

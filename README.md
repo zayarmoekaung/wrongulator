@@ -39,7 +39,7 @@ pnpm run preview
 - The app root component is [`App`](src/App.tsx).
 - UI button component: [`Btn`](src/components/btn/button.tsx).
 - State stores:
-  - Syntax : [`useCalculate`](src/stores/useCalculate.ts)
+  - Syntax : [`useSyntax`](src/stores/useSyntax.ts)
   - History: [`useHistory`](src/stores/useHistory.ts)
   - Result display: [`useResult`](src/stores/useResult.ts)
   - Wrongulate: [`useWrongulate`](src/stores/useWrongulate.ts)
@@ -82,7 +82,7 @@ pnpm run preview
   - index.tsx
   - rspeedy-env.d.ts
   - stores/
-    - useCalculate.ts
+    - useSyntax.ts
     - useHistory.ts
     - useResult.ts
     - useWrongulate.ts
