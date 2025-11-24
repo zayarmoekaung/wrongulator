@@ -1,26 +1,35 @@
 import type { SyntaxNode } from '../types/syntaxNode';
+import { useWrongulate } from '../stores/useWrongulate';
+
 export default function calculateSyntaxTree(syntaxTree: SyntaxNode[]): number {
     if (!Array.isArray(syntaxTree)) {
         throw new TypeError('syntaxTree must be an array');
     }
     if (syntaxTree.length === 0) {
-        throw new Error('Empty syntax tree');
+        return 0;
     }
 
     let result = 0;
     let right = 0;
     let opFunc: ((a: number, b: number) => number) | null = null;
+    const wrongulated = useWrongulate.getState().isWrongulated;
 
     for (const node of syntaxTree) {
         if (!node || typeof node !== 'object' || typeof node.type !== 'string') {
             throw new Error(`Invalid node encountered: ${JSON.stringify(node)}`);
         }
-
         if (node.type === 'number') {
             if (node.value == null) throw new Error('Number node missing value');
             right = parseFloat(String(node.value));
             if (Number.isNaN(right)) throw new Error(`Invalid number: ${node.value}`);
             if (opFunc) {
+                if (wrongulated) {
+                    const rightModifier = Math.floor(Math.random() * 0.1 + node.value.length) - 1;
+                    const randomOffset = Math.floor(Math.random() * 10) - rightModifier;
+                    opFunc = pickRandomOpFunc();
+                    result += randomOffset;
+                    right += rightModifier;
+                }
                 if (opFunc === operations['/'] && right === 0) throw new Error('Division by zero');
                 result = opFunc(result, right);
                 opFunc = null;
@@ -54,15 +63,23 @@ export default function calculateSyntaxTree(syntaxTree: SyntaxNode[]): number {
     }
 
     if (opFunc) {
-        throw new Error('Expression ends with an operator');
+        //throw new Error('Expression ends with an operator');
     }
 
     return result;
 }
-const operations: {[key: string]: (a: number, b: number) => number} = {
+const operations: { [key: string]: (a: number, b: number) => number } = {
     '+': (a, b) => a + b,
     '-': (a, b) => a - b,
     '*': (a, b) => a * b,
     '/': (a, b) => a / b,
 };
-
+const opKeys = Object.keys(operations);
+const pickRandomOpFunc = (): ((a: number, b: number) => number) => {
+    if (opKeys.length === 0) {
+        throw new Error('No operations available');
+    }
+    const randomIndex = Math.floor(Math.random() * opKeys.length);
+    const randomKey = opKeys[randomIndex];
+    return operations[randomKey];
+};

@@ -3,8 +3,10 @@ import { useCallback, useEffect, useState } from '@lynx-js/react'
 import './App.css'
 import { useCalculate } from './stores/useCalculate'
 import { useResult } from './stores/useResult'
-import Btn from './components/btn/btn'
+import Button from './components/btn/button'
+import Title from './components/title/title'
 import parseSyntaxTree from './utils/syntaxParser'
+import { NodeType } from './types/nodeType'
 export function App(props: {
   onRender?: () => void
 }) {
@@ -25,7 +27,7 @@ export function App(props: {
     <view>
       <view className='App'>
         <view className='Banner'>
-          <text className='Title'>Wrongulator</text>
+          <Title />
         </view>
         <view className='SyntaxContainer'>
           <text className='Syntax'>{parseSyntaxTree(syntaxTree)}</text>
@@ -35,32 +37,32 @@ export function App(props: {
         </view>
         <view className='Content'>
           <view className='ButtonGrid'>
-            <Btn value="AC" type="operator" />
-            <Btn value="7" type="number" />
-            <Btn value="4" type="number" />
-            <Btn value="1" type="number" />
-            <Btn value="0" type="number" />
+            <Button value="AC" type={NodeType.CONTROL} />
+            <Button value="7" type={NodeType.NUMBER} />
+            <Button value="4" type={NodeType.NUMBER} />
+            <Button value="1" type={NodeType.NUMBER} />
+            <Button value="0" type={NodeType.NUMBER} />
           </view>
           <view className='ButtonGrid'>
-            <Btn value="()" type="parenthesis" />
-            <Btn value="8" type="number" />
-            <Btn value="5" type="number" />
-            <Btn value="2" type="number" />
-            <Btn value="." type="number" />
+            <Button value="()" type={NodeType.PARENTHESIS} />
+            <Button value="8" type={NodeType.NUMBER} />
+            <Button value="5" type={NodeType.NUMBER} />
+            <Button value="2" type={NodeType.NUMBER} />
+            <Button value="." type={NodeType.NUMBER} />
           </view>
           <view className='ButtonGrid'>
-            <Btn value="%" type="operator" />
-            <Btn value="9" type="number" />
-            <Btn value="6" type="number" />
-            <Btn value="3" type="number" />
-            <Btn value="Del" type="operator" />
+            <Button value="%" type={NodeType.OPERATOR} />
+            <Button value="9" type={NodeType.NUMBER} />
+            <Button value="6" type={NodeType.NUMBER} />
+            <Button value="3" type={NodeType.NUMBER} />
+            <Button value="Del" type={NodeType.CONTROL} />
           </view>
           <view className='ButtonGrid'>
-            <Btn value="/" type="operator" />
-            <Btn value="*" type="operator" />
-            <Btn value="-" type="operator" />
-            <Btn value="+" type="operator" />
-            <Btn value="=" type="operator" />
+            <Button value="/" type={NodeType.OPERATOR} />
+            <Button value="*" type={NodeType.OPERATOR} />
+            <Button value="-" type={NodeType.OPERATOR} />
+            <Button value="+" type={NodeType.OPERATOR} />
+            <Button value="=" type={NodeType.CONTROL} />
           </view>
         </view>
       </view>

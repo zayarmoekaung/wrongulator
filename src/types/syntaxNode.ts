@@ -1,5 +1,7 @@
+import { NodeType } from "./nodeType";
+
 interface SyntaxNode {
-    type: 'number'| 'operator' | 'parenthesis';
+    type: NodeType;
     value?: string;
     children?: SyntaxNode[];
 }
